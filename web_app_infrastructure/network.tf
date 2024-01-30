@@ -3,26 +3,6 @@ locals {
   resource_group_network_name = "rg-${var.global_settings.workload_network}-${var.global_settings.environment}-${var.global_settings.location_short}-01"
 }
 
-variable "vnets" {
-  description = <<-EOF
-  A map defining VNETs.
-  
-  For detailed documentation on each property refer to [module documentation](../../modules/virtual_network_with_secured_subnets/README.md)
-
-  - `create_virtual_network` : (default: `true`) when set to `true` will create a VNET, `false` will source an existing VNET, in both cases the name of the VNET is specified with `name`
-  - `name` :  A name of a VNET.
-  - `resource_group_name` :  (default: current RG) a name of a Resource Group in which the VNET will reside
-  - `address_space` : a list of CIDRs for VNET
-  - `dns_servers` : (default: `Azure Provided`) a list of DNS Servers for the vNet.
-
-  - `create_subnets` : (default: `true`) if true, create the Subnets inside the Virtual Network, otherwise use pre-existing subnets
-  - `subnets` : map of Subnets to create
-
-  - `network_security_groups` : map of Network Security Groups to create
-  - `route_tables` : map of Route Tables to create.
-  EOF
-
-}
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
