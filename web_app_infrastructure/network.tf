@@ -33,6 +33,16 @@ variable "subnet_db_address_prefixes" {
   type        = list(string)
 }
 
+variable "subnet_app_name" {
+  description = "The name of the app subnet"
+  type        = string
+}
+
+variable "subnet_db_name" {
+  description = "The name of the db subnet"
+  type        = string
+}
+
 resource "azurerm_resource_group" "network" {
   count    = var.create_resource_group ? 1 : 0
   name     = local.resource_group_network_name
@@ -53,6 +63,8 @@ module "network" {
   resource_group_name         = local.resource_group_network_name
   subnet_app_address_prefixes = var.subnet_app_address_prefixes
   subnet_db_address_prefixes  = var.subnet_db_address_prefixes
+  subnet_app_name             = var.subnet_app_name
+  subnet_db_name              = var.subnet_db_name
 }
 
 output "vnet_id" {
