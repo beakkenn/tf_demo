@@ -32,7 +32,7 @@ variable "address_space" {
   description = "The address space of the virtual network"
   type        = list(string)
 }
-
+/*
 variable "location" {
   description = "The location/region where the virtual network is created"
   type        = string
@@ -41,7 +41,7 @@ variable "location" {
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
-}
+}*/
 
 variable "subnet_app_address_prefixes" {
   description = "The address prefix for the application subnet"
@@ -69,8 +69,8 @@ module "network" {
   source                      = "../modules/network"
   vnet_name                   = var.vnet_name
   address_space               = var.address_space
-  location                    = var.location
-  resource_group_name         = var.resource_group_name
+  location                    = var.global_settings.location
+  resource_group_name         = local.resource_group_network_name
   subnet_app_address_prefixes = var.subnet_app_address_prefixes
   subnet_db_address_prefixes  = var.subnet_db_address_prefixes
 }
