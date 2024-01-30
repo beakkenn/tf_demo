@@ -66,7 +66,7 @@ module "network" {
   subnet_app_name             = var.subnet_app_name
   subnet_db_name              = var.subnet_db_name
 }
-
+/*
 output "vnet_id" {
   value       = azurerm_virtual_network.vnet.id
   description = "The ID of the virtual network"
@@ -91,3 +91,4 @@ output "nsg_db_id" {
   value       = azurerm_network_security_group.nsg_db.id
   description = "The ID of the database network security group"
 }
+*/
