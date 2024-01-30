@@ -32,7 +32,7 @@ variable "address_space" {
   description = "The address space of the virtual network"
   type        = list(string)
 }
-
+/*
 variable "location" {
   description = "The location/region where the virtual network is created"
   type        = string
@@ -41,7 +41,7 @@ variable "location" {
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
-}
+}*/
 
 variable "subnet_app_address_prefixes" {
   description = "The address prefix for the application subnet"
