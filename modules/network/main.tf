@@ -86,7 +86,7 @@ resource "azurerm_subnet" "subnet_db" {
 }
 
 resource "azurerm_network_security_group" "nsg_app" {
-  name                = "${var.vnet_name}-nsg-app"
+  name                = "nsg-${var.subnet_app_name}"
   location            = var.location
   resource_group_name = var.resource_group_name
 }
@@ -97,7 +97,7 @@ resource "azurerm_subnet_network_security_group_association" "nsg_association_ap
 }
 
 resource "azurerm_network_security_group" "nsg_db" {
-  name                = "${var.vnet_name}-nsg-db"
+  name                = "nsg-${var.subnet_db_name}"
   location            = var.location
   resource_group_name = var.resource_group_name
 }
