@@ -72,14 +72,14 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "subnet_app" {
-  name                 = "${var.vnet_name}-app"
+  name                 = var.subnet_app_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_app_address_prefixes
 }
 
 resource "azurerm_subnet" "subnet_db" {
-  name                 = "${var.vnet_name}-db"
+  name                 = var.subnet_db_name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_db_address_prefixes
