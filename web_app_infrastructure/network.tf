@@ -1,8 +1,3 @@
-locals {
-  resource_group_network = var.create_resource_group ? azurerm_resource_group.network[0] : data.azurerm_resource_group.network[0]
-  resource_group_network_name = "rg-${var.global_settings.workload_network}-${var.global_settings.environment}-${var.global_settings.location_short}-01"
-}
-
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
@@ -45,14 +40,14 @@ variable "subnet_db_name" {
 
 resource "azurerm_resource_group" "network" {
   count    = var.create_resource_group ? 1 : 0
-  name     = local.resource_group_network_name
+  name     = local.resource_group_webapp_name
   location = var.global_settings.location
   tags     = var.global_settings.tags
 }
 
 data "azurerm_resource_group" "network" {
   count = var.create_resource_group ? 0 : 1
-  name  = local.resource_group_network_name
+  name  = local.resource_group_webapp_name
 }
 
 module "network" {
@@ -60,7 +55,7 @@ module "network" {
   vnet_name                   = var.vnet_name
   address_space               = var.address_space
   location                    = var.global_settings.location
-  resource_group_name         = local.resource_group_network_name
+  resource_group_name         = local.resource_group_webapp_name
   subnet_app_address_prefixes = var.subnet_app_address_prefixes
   subnet_db_address_prefixes  = var.subnet_db_address_prefixes
   subnet_app_name             = var.subnet_app_name
