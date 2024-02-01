@@ -61,6 +61,9 @@ module "network" {
   subnet_app_name             = var.subnet_app_name
   subnet_db_name              = var.subnet_db_name
 }
+
+
+
 /*
 output "vnet_id" {
   value       = azurerm_virtual_network.vnet.id

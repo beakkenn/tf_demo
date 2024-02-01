@@ -12,6 +12,8 @@ global_settings = {
   },
 }
 
+
+
 vnet_name     = "vnet-webapp-eus01"
 address_space = ["10.0.0.0/16"]
 # location                     = "eastus"
@@ -20,3 +22,31 @@ subnet_app_address_prefixes = ["10.0.1.0/24"]
 subnet_db_address_prefixes  = ["10.0.2.0/24"]
 subnet_app_name             = "snet-app-eus"
 subnet_db_name              = "snet-db-eus"
+
+
+
+storage_accounts = {
+  "account1" = {
+    name                     = "examplestoracc1"
+    location                 = "East US"
+    account_tier             = "Standard"
+    account_replication_type = "LRS"
+    tags                     = {
+      "Environment" = "Dev"
+    }
+    containers = [
+      {
+        name                 = "container1"
+        container_access_type = "private"
+      }
+    ]
+    private_endpoints = [
+      {
+        name                           = "pe-examplestoracc1"
+        subnet_id                      = "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{subnet-name}"
+        private_service_connection_name = "psc-examplestoracc1"
+      }
+    ]
+  }
+  # Include other storage accounts as needed
+}
