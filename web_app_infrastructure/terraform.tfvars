@@ -31,22 +31,21 @@ storage_accounts = {
     location                 = "East US"
     account_tier             = "Standard"
     account_replication_type = "LRS"
-    tags                     = {
-      "Environment" = "Dev"
-    }
+    tags                     = { "Environment" = "Dev" }
     containers = [
       {
-        name                 = "container1"
+        name                  = "container1"
         container_access_type = "private"
       }
     ]
     private_endpoints = [
       {
         name                           = "pe-examplestoracc1"
-        subnet_id                      = "/subscriptions/{subscription-id}/resourceGroups/{rg-name}/providers/Microsoft.Network/virtualNetworks/{vnet-name}/subnets/{subnet-name}"
+        subnet_id                      = azurerm_subnet.example.id
         private_service_connection_name = "psc-examplestoracc1"
       }
     ]
   }
-  # Include other storage accounts as needed
+  # Additional storage accounts as needed
 }
+
