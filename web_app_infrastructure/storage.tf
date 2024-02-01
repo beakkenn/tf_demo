@@ -5,13 +5,13 @@ variable "storage_accounts" {
   description = "A map of storage account configurations."
   type = map(object({
     name                     = string
-    resource_group_name      = string
-    location                 = string
+    # resource_group_name      = string
+    # location                 = string
     account_tier             = string
     account_replication_type = string
     default_network_access_rule = string
     ip_rules                 = list(string)
-    tags                     = map(string)
+    # tags                     = map(string)
   }))
 }
 
@@ -19,7 +19,7 @@ variable "storage_accounts" {
 
 module "storage_account" {
   for_each            = var.storage_accounts
-  source              = "./modules/storage_account"
+  source              = "../modules/storage"
   
   name                = each.value.name
   resource_group_name = local.resource_group_webapp_name

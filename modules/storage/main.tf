@@ -35,6 +35,12 @@ variable "ip_rules" {
   default     = []
 }
 
+variable "public_network_access_enabled" {
+  description = "Allow public network access to the storage account"
+  type = bool
+  default = false
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to the resource."
   type        = map(string)
@@ -43,11 +49,12 @@ variable "tags" {
 
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = var.name
-  resource_group_name      = var.resource_group_name
-  location                 = var.location
-  account_tier             = var.account_tier
-  account_replication_type = var.account_replication_type
+  name                               = var.name
+  resource_group_name                = var.resource_group_name
+  location                           = var.location
+  account_tier                       = var.account_tier
+  account_replication_type           = var.account_replication_type
+  public_network_access_enabled      = var.public_network_access_enabled
 
   network_rules {
     default_action             = var.default_network_access_rule

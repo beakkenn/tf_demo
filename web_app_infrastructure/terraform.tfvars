@@ -25,4 +25,14 @@ subnet_db_name              = "snet-db-eus"
 
 
 
-
+storage_accounts = {
+  "account1" = {
+    name                     = "examplestoracc1"
+    account_tier             = "Standard"
+    account_replication_type = "LRS"
+    default_network_access_rule = "Deny"
+    ip_rules                 = []
+    
+  },
+  # Additional storage accounts as needed
+}
