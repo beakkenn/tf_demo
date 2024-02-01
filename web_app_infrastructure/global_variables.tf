@@ -1,5 +1,5 @@
 locals {
-  resource_group_webapp      = var.create_resource_group ? azurerm_resource_group.network[0] : data.azurerm_resource_group.network[0]
+  resource_group_webapp      = var.create_resource_group ? azurerm_resource_group.rg[0] : data.azurerm_resource_group.rg[0]
   resource_group_webapp_name = "rg-${var.global_settings.workload}-${var.global_settings.location_short}-01"
 }
 
@@ -25,6 +25,18 @@ variable "create_resource_group" {
   default     = true
   type        = bool
 }
+resource "azurerm_resource_group" "rg" {
+  count    = var.create_resource_group ? 1 : 0
+  name     = local.resource_group_webapp_name
+  location = var.global_settings.location
+  tags     = var.global_settings.tags
+}
+
+data "azurerm_resource_group" "rg" {
+  count = var.create_resource_group ? 0 : 1
+  name  = local.resource_group_webapp_name
+}
+
 resource "random_password" "password" {
   length           = 16
   special          = true

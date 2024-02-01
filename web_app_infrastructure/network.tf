@@ -38,18 +38,6 @@ variable "subnet_db_name" {
   type        = string
 }
 
-resource "azurerm_resource_group" "network" {
-  count    = var.create_resource_group ? 1 : 0
-  name     = local.resource_group_webapp_name
-  location = var.global_settings.location
-  tags     = var.global_settings.tags
-}
-
-data "azurerm_resource_group" "network" {
-  count = var.create_resource_group ? 0 : 1
-  name  = local.resource_group_webapp_name
-}
-
 module "network" {
   source                      = "../modules/network"
   vnet_name                   = var.vnet_name
@@ -60,6 +48,7 @@ module "network" {
   subnet_db_address_prefixes  = var.subnet_db_address_prefixes
   subnet_app_name             = var.subnet_app_name
   subnet_db_name              = var.subnet_db_name
+  tags                        = var.global_settings.tags
 }
 
 resource "azurerm_private_dns_zone" "blob" {
