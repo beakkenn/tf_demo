@@ -1,4 +1,4 @@
-variable "storage_account" {
+variable "storage_accounts" {
   description = "The configuration of the storage account."
   type = object({
     name                     = string
