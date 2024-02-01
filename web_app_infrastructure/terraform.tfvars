@@ -25,27 +25,4 @@ subnet_db_name              = "snet-db-eus"
 
 
 
-storage_accounts = {
-  "account1" = {
-    name                     = "examplestoracc1"
-    location                 = "East US"
-    account_tier             = "Standard"
-    account_replication_type = "LRS"
-    tags                     = { "Environment" = "Dev" }
-    containers = [
-      {
-        name                  = "container1"
-        container_access_type = "private"
-      }
-    ]
-    private_endpoints = [
-      {
-        name                           = "pe-examplestoracc1"
-        subnet_id                      = azurerm_subnet.example.id
-        private_service_connection_name = "psc-examplestoracc1"
-      }
-    ]
-  }
-  # Additional storage accounts as needed
-}
 

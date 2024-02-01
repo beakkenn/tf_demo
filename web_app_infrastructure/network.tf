@@ -62,6 +62,15 @@ module "network" {
   subnet_db_name              = var.subnet_db_name
 }
 
+resource "azurerm_private_dns_zone" "blob" {
+  name                = "privatelink.blob.core.windows.net"
+  resource_group_name = local.resource_group_webapp_name
+}
+
+resource "azurerm_private_dns_zone" "postgresql" {
+  name                = "privatelink.postgres.database.azure.com"
+  resource_group_name = local.resource_group_webapp_name
+}
 
 
 /*
