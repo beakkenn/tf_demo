@@ -41,8 +41,8 @@ resource "azurerm_storage_container" "container" {
   container_access_type = each.value.container_access_type
 }
 
-resource "azurerm_private_endpoint" "pep" {
-  for_each             = { for pep in var.storage_account.pep : pep.name => pep }
+resource "azurerm_private_endpoint" "private_endpoint" {
+  for_each             = { for pe in var.storage_account.private_endpoints : pe.name => pe }
   name                 = each.value.name
   location             = azurerm_storage_account.storage_account.location
   resource_group_name  = azurerm_storage_account.storage_account.resource_group_name
@@ -55,6 +55,7 @@ resource "azurerm_private_endpoint" "pep" {
     subresource_names              = ["blob"]
   }
 }
+
 
 
 output "storage_account_id" {
